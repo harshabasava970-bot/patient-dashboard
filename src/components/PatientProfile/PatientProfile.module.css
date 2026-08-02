@@ -10,14 +10,10 @@
   transition: box-shadow var(--transition-base);
 }
 
-.card:hover {
-  box-shadow: var(--shadow-card-hover);
-}
+.card:hover { box-shadow: var(--shadow-card-hover); }
 
 /* ── Avatar ── */
-.avatarWrap {
-  margin-bottom: var(--space-4);
-}
+.avatarWrap { margin-bottom: var(--space-4); }
 
 .avatar {
   width: 200px;
@@ -39,7 +35,6 @@
   font-weight: 800;
 }
 
-/* ── Name ── */
 .name {
   font-size: var(--font-size-lg);
   font-weight: 700;
@@ -52,7 +47,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 0;
   margin-bottom: var(--space-5);
   text-align: left;
 }
@@ -62,9 +56,7 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.detailRow:last-child {
-  border-bottom: none;
-}
+.detailRow:last-child { border-bottom: none; }
 
 .detailLabel {
   display: flex;
@@ -72,9 +64,8 @@
   gap: var(--space-2);
   font-size: var(--font-size-xs);
   font-weight: 700;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   margin-bottom: var(--space-1);
-  text-transform: capitalize;
 }
 
 .detailIcon {
@@ -98,25 +89,219 @@
   word-break: break-word;
 }
 
-/* ── CTA ── */
-.cta {
+/* ── Action buttons ── */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+.ctaSecondary {
   width: 100%;
   padding: var(--space-3) var(--space-4);
   border-radius: var(--radius-pill);
-  border: none;
+  border: 1.5px solid var(--color-border);
   background: var(--color-surface);
   color: var(--color-text-primary);
   font-size: var(--font-size-base);
   font-weight: 700;
   font-family: var(--font-family-base);
-  border: 1px solid var(--color-border);
   cursor: pointer;
-  transition: background var(--transition-fast), border-color var(--transition-fast),
-    color var(--transition-fast);
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast);
 }
 
-.cta:hover {
+.ctaSecondary:hover {
   background: var(--color-primary);
   color: var(--color-text-inverse);
   border-color: var(--color-primary);
+}
+
+.ctaPrimary {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-pill);
+  border: none;
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.ctaPrimary:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+/* ── Modal body ── */
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.modalHero {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.modalAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.modalAvatarFallback {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.modalName {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.modalSub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-1);
+}
+
+.modalSection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.modalSectionTitle {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: var(--font-size-xs);
+}
+
+.modalDl {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.modalDlRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.modalDlRow:last-child { border-bottom: none; }
+
+.modalDt {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.modalDd {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+/* Diagnostics */
+.modalDiagList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.modalDiagRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+}
+
+.modalDiagName {
+  font-weight: 700;
+  font-size: var(--font-size-base);
+  color: var(--color-text-primary);
+  min-width: 130px;
+}
+
+.modalDiagDesc {
+  flex: 1;
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.modalBadge {
+  padding: 3px 12px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* dynamic status classes */
+.status_cured              { background: var(--color-status-good-bg); color: var(--color-status-good); }
+.status_inactive           { background: var(--color-status-neutral-bg); color: var(--color-status-neutral); }
+.status_active             { background: var(--color-status-warn-bg); color: var(--color-status-warn); }
+.status_under_observation  { background: var(--color-status-info-bg); color: var(--color-status-info); }
+.status_untreated          { background: var(--color-status-warn-bg); color: var(--color-status-warn); }
+
+/* Lab results */
+.modalLabList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.modalLabRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text-primary);
+}
+
+.modalLabStatus {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  background: var(--color-status-good-bg);
+  color: var(--color-status-good);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
 }
