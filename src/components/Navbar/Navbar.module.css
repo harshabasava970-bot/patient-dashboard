@@ -43,12 +43,17 @@
   font-size: var(--font-size-base);
   font-weight: 600;
   color: var(--color-text-primary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-family-base);
   transition: color var(--transition-fast), background var(--transition-fast);
   white-space: nowrap;
 }
 
 .navLink:hover {
   color: var(--color-primary);
+  background: var(--color-primary-lighter);
 }
 
 .navLinkActive {
@@ -110,6 +115,20 @@
   flex-shrink: 0;
 }
 
+.profileAvatarFallback {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .profileText {
   display: flex;
   flex-direction: column;
@@ -128,7 +147,12 @@
   font-weight: 400;
 }
 
-/* ── Responsive ── */
+/* ── Logo ── */
+.logo {
+  display: block;
+  width: 140px;
+  height: 36px;
+}
 @media (max-width: 1200px) {
   .navbar {
     gap: var(--space-5);

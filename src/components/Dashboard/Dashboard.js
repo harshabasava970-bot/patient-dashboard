@@ -1,5 +1,6 @@
 'use client';
 
+import { useState, useMemo } from 'react';
 import styles from './Dashboard.module.css';
 import Navbar from '../Navbar/Navbar';
 import PatientList from '../PatientList/PatientList';
@@ -10,7 +11,7 @@ import PatientProfile from '../PatientProfile/PatientProfile';
 import LabResults from '../LabResults/LabResults';
 import LoadingState from '../StatusStates/LoadingState';
 import ErrorState from '../StatusStates/ErrorState';
-import { usePatientData } from '../../lib/usePatientData';
+import { useAllPatients } from '../../lib/usePatientData';
 import {
   getDiagnosisHistory,
   getLatestVitals,
@@ -18,13 +19,38 @@ import {
   getLabResults,
 } from '../../lib/patients';
 
+/** Placeholder for nav sections that don't have real content yet */
+function ComingSoon({ label }) {
+  return (
+    <div className={styles.comingSoon}>
+      <span className={styles.comingSoonIcon} aria-hidden="true">🚧</span>
+      <h2 className={styles.comingSoonTitle}>{label}</h2>
+      <p className={styles.comingSoonText}>This section is coming soon.</p>
+    </div>
+  );
+}
+
 export default function Dashboard() {
-  const { patient, status, error, retry } = usePatientData('Jessica Taylor');
+  const { patients, status, error, retry } = useAllPatients();
+
+  // Default to Jessica Taylor; fall back to first patient
+  const defaultPatient = useMemo(() => {
+    if (!patients.length) return null;
+    return (
+      patients.find((p) => p.name === 'Jessica Taylor') ?? patients[0]
+    );
+  }, [patients]);
+
+  const [selectedPatient, setSelectedPatient] = useState(null);
+  const [activeNav, setActiveNav] = useState('Patients');
+
+  // Once patients load, seed the selection
+  const patient = selectedPatient ?? defaultPatient;
 
   if (status === 'loading') {
     return (
       <div className={styles.page}>
-        <Navbar />
+        <Navbar activeNav={activeNav} onNavChange={setActiveNav} />
         <LoadingState />
       </div>
     );
@@ -33,19 +59,33 @@ export default function Dashboard() {
   if (status === 'error') {
     return (
       <div className={styles.page}>
-        <Navbar />
+        <Navbar activeNav={activeNav} onNavChange={setActiveNav} />
         <ErrorState message={error} onRetry={retry} />
+      </div>
+    );
+  }
+
+  // Non-patient nav tabs
+  if (activeNav !== 'Patients') {
+    return (
+      <div className={styles.page}>
+        <Navbar activeNav={activeNav} onNavChange={setActiveNav} />
+        <ComingSoon label={activeNav} />
       </div>
     );
   }
 
   return (
     <div className={styles.page}>
-      <Navbar />
+      <Navbar activeNav={activeNav} onNavChange={setActiveNav} />
 
       <div className={styles.layout}>
         {/* Left sidebar — patient roster */}
-        <PatientList activePatient={patient} />
+        <PatientList
+          patients={patients}
+          selectedPatient={patient}
+          onSelectPatient={setSelectedPatient}
+        />
 
         {/* Centre — main content */}
         <main className={styles.main} id="main-content">

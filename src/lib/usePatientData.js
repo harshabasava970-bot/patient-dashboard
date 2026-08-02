@@ -1,19 +1,18 @@
 'use client';
 
 import { useEffect, useState, useCallback } from 'react';
-import { findPatientByName } from './patients';
+import { extractPatientList } from './patients';
 
 /**
- * Fetches the patient list from our internal proxy route (/api/patients)
- * and returns the record for the requested patient, plus loading/error state
- * and a retry callback for the error UI.
+ * Fetches the full patient list from our internal proxy route (/api/patients).
+ * Returns the complete list so any patient can be selected in the UI.
  */
-export function usePatientData(patientName = 'Jessica Taylor') {
-  const [status, setStatus] = useState('loading'); // 'loading' | 'success' | 'error'
-  const [patient, setPatient] = useState(null);
+export function useAllPatients() {
+  const [status, setStatus] = useState('loading');
+  const [patients, setPatients] = useState([]);
   const [error, setError] = useState(null);
 
-  const fetchPatient = useCallback(async () => {
+  const fetchPatients = useCallback(async () => {
     setStatus('loading');
     setError(null);
 
@@ -22,20 +21,16 @@ export function usePatientData(patientName = 'Jessica Taylor') {
       const payload = await res.json();
 
       if (!res.ok) {
-        throw new Error(
-          payload?.error ?? `Request failed with status ${res.status}.`
-        );
+        throw new Error(payload?.error ?? `Request failed with status ${res.status}.`);
       }
 
-      const found = findPatientByName(payload, patientName);
+      const list = extractPatientList(payload);
 
-      if (!found) {
-        throw new Error(
-          `No record found for "${patientName}". Please verify the API returned data.`
-        );
+      if (!list.length) {
+        throw new Error('The API returned an empty patient list.');
       }
 
-      setPatient(found);
+      setPatients(list);
       setStatus('success');
     } catch (err) {
       setError(
@@ -45,11 +40,11 @@ export function usePatientData(patientName = 'Jessica Taylor') {
       );
       setStatus('error');
     }
-  }, [patientName]);
+  }, []);
 
   useEffect(() => {
-    fetchPatient();
-  }, [fetchPatient]);
+    fetchPatients();
+  }, [fetchPatients]);
 
-  return { patient, status, error, retry: fetchPatient };
+  return { patients, status, error, retry: fetchPatients };
 }
