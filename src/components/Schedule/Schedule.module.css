@@ -1,0 +1,312 @@
+.page {
+  flex: 1;
+  padding: var(--space-6) var(--space-6) var(--space-8);
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.topRow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.heading {
+  font-size: var(--font-size-xl);
+  font-weight: 800;
+  color: var(--color-text-primary);
+}
+
+.sub {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  margin-top: var(--space-1);
+}
+
+.newBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  border: none;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.newBtn:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ── Summary ── */
+.summaryRow {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.summaryPill {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-3) var(--space-5);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.summaryNum {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
+  color: var(--color-primary);
+}
+
+.summaryLabel {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* ── Weekly grid ── */
+.weekGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+}
+
+.dayCol {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.dayHeader {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-primary);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dayName {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-inverse);
+}
+
+.dayDate {
+  font-size: var(--font-size-xs);
+  color: rgba(255,255,255,0.75);
+}
+
+.daySlots {
+  padding: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-height: 80px;
+}
+
+.noSlots {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-3) 0;
+}
+
+/* ── Appointment card ── */
+.apptCard {
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.teal   { background: #e0f4f5; }
+.purple { background: #ede8fb; }
+.orange { background: #fef0e6; }
+.pink   { background: #fce8f3; }
+.blue   { background: #e6eeff; }
+.red    { background: #fde8e8; }
+
+.apptTime {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.apptAvatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.08);
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.apptInfo {
+  min-width: 0;
+  flex: 1;
+}
+
+.apptName {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.apptType {
+  font-size: 10px;
+  color: var(--color-text-secondary);
+}
+
+/* ── Upcoming list ── */
+.upcomingCard {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+}
+
+.upcomingTitle {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-5);
+}
+
+.upcomingList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.upcomingRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.upcomingRow:last-child {
+  border-bottom: none;
+}
+
+.upcomingDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.upcomingDot.teal   { background: var(--color-primary); }
+.upcomingDot.purple { background: #8c6fe6; }
+.upcomingDot.orange { background: var(--color-accent-orange); }
+.upcomingDot.pink   { background: #e66fd2; }
+.upcomingDot.blue   { background: #4a90e2; }
+.upcomingDot.red    { background: var(--color-status-warn); }
+
+.upcomingAvatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.upcomingInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.upcomingName {
+  font-size: var(--font-size-base);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.upcomingMeta {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.upcomingTime {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.upcomingDay {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.upcomingHour {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+}
+
+.confirmBtn {
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-lighter);
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  font-family: var(--font-family-base);
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.confirmBtn:hover {
+  background: var(--color-primary);
+  color: var(--color-text-inverse);
+}
+
+/* ── Responsive ── */
+@media (max-width: 1024px) {
+  .weekGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .page { padding: var(--space-4); }
+  .weekGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .weekGrid { grid-template-columns: 1fr; }
+}

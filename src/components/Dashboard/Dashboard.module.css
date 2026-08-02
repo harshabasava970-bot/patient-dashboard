@@ -5,6 +5,15 @@
   background: var(--color-bg);
 }
 
+/* Full-height variant used by the Message tab */
+.pageFlex {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
 .layout {
   flex: 1;
   display: grid;
