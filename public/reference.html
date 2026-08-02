@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Patient Dashboard | Jessica Taylor (Static Reference)</title>
+<style>
+  :root {
+    --color-primary: #01606c;
+    --color-primary-light: #d7e8ea;
+    --color-accent-orange: #e9663e;
+    --color-bg: #f6f7f9;
+    --color-surface: #ffffff;
+    --color-border: #e6e9ec;
+    --color-text-primary: #06263d;
+    --color-text-secondary: #7e8992;
+    --color-text-muted: #a6adb4;
+    --color-text-inverse: #ffffff;
+    --color-status-good: #35a774;
+    --color-status-good-bg: #e6f6ee;
+    --color-status-warn: #e9663e;
+    --color-status-warn-bg: #fdece6;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-pill: 999px;
+    --shadow-card: 0 2px 12px rgba(6, 38, 61, 0.05);
+    --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-family-base); background: var(--color-bg); color: var(--color-text-primary); }
+  header.navbar { display: flex; align-items: center; gap: 24px; padding: 16px 24px; background: #fff; border-bottom: 1px solid var(--color-border); }
+  .brand { font-weight: 700; color: var(--color-primary); }
+  .nav-links { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; flex: 1; }
+  .nav-links a { text-decoration: none; color: var(--color-text-secondary); font-size: 14px; font-weight: 500; }
+  .nav-links a.active { color: var(--color-primary); border-bottom: 2px solid var(--color-primary); padding-bottom: 8px; }
+  .layout { display: grid; grid-template-columns: 260px 1fr 320px; gap: 20px; padding: 20px 24px; align-items: start; }
+  aside.sidebar { background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--color-border); padding: 20px 12px; }
+  .patient-row { display: flex; gap: 12px; align-items: center; padding: 8px 12px; border-radius: var(--radius-md); }
+  .patient-row.active { background: var(--color-primary); color: #fff; }
+  .avatar-sm { width: 40px; height: 40px; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary); display: inline-flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; }
+  .patient-row.active .avatar-sm { background: rgba(255,255,255,0.2); color: #fff; }
+  main.content { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+  .vitals { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .vital-card { border-radius: var(--radius-lg); padding: 20px; color: #fff; background: var(--color-primary); }
+  .vital-card.orange { background: var(--color-accent-orange); }
+  .vital-card.pink { background: #c95b8f; }
+  .vital-card .value { font-size: 26px; font-weight: 700; margin-top: 8px; }
+  .card { background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--color-border); padding: 20px; box-shadow: var(--shadow-card); }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; color: var(--color-text-muted); font-weight: 500; padding: 8px 12px; border-bottom: 1px solid var(--color-border); }
+  td { padding: 12px; border-bottom: 1px solid var(--color-border); }
+  .status { padding: 4px 12px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 600; background: var(--color-status-good-bg); color: var(--color-status-good); }
+  .status.warn { background: var(--color-status-warn-bg); color: var(--color-status-warn); }
+  aside.profile-col { display: flex; flex-direction: column; gap: 20px; }
+  .profile-card { background: var(--color-primary); color: #fff; border-radius: var(--radius-lg); padding: 28px 20px; text-align: center; }
+  .profile-card .avatar-lg { width: 88px; height: 88px; border-radius: 50%; background: rgba(255,255,255,0.15); display: inline-flex; align-items: center; justify-content: center; font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+  .profile-detail { text-align: left; border-bottom: 1px solid rgba(255,255,255,0.15); padding: 12px 0; font-size: 14px; }
+  .profile-detail small { display: block; opacity: 0.75; font-size: 11px; margin-bottom: 2px; }
+  .cta { width: 100%; margin-top: 16px; padding: 12px; border-radius: var(--radius-pill); border: none; background: #fff; color: var(--color-primary); font-weight: 600; }
+  .lab-row { display: flex; justify-content: space-between; align-items: center; background: var(--color-bg); padding: 10px 12px; border-radius: var(--radius-md); margin-bottom: 10px; font-size: 14px; }
+  .download { width: 30px; height: 30px; border-radius: 50%; background: var(--color-primary-light); color: var(--color-primary); display: inline-flex; align-items: center; justify-content: center; }
+  @media (max-width: 992px) { .layout { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+  <header class="navbar">
+    <span class="brand">Tanya</span>
+    <ul class="nav-links">
+      <li><a href="#">Overview</a></li>
+      <li><a href="#" class="active">Patients</a></li>
+      <li><a href="#">Schedule</a></li>
+      <li><a href="#">Message</a></li>
+      <li><a href="#">Transactions</a></li>
+    </ul>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar" aria-label="Patient list">
+      <div class="patient-row active"><span class="avatar-sm">JT</span> Jessica Taylor</div>
+      <div class="patient-row"><span class="avatar-sm">KP</span> Kevin Peterson</div>
+      <div class="patient-row"><span class="avatar-sm">JS</span> John Smith</div>
+      <div class="patient-row"><span class="avatar-sm">RW</span> Rebecca Wilson</div>
+    </aside>
+
+    <main class="content">
+      <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;">Jessica Taylor's patient dashboard</h1>
+
+      <div class="vitals">
+        <div class="vital-card orange"><div>Respiratory Rate</div><div class="value">20 bpm</div></div>
+        <div class="vital-card pink"><div>Temperature</div><div class="value">98.6 F</div></div>
+        <div class="vital-card"><div>Heart Rate</div><div class="value">78 bpm</div></div>
+      </div>
+
+      <section class="card">
+        <h3>Blood Pressure</h3>
+        <p style="color: var(--color-text-secondary); font-size: 14px;">
+          (Interactive Chart.js line chart renders here in the live app — systolic vs. diastolic across diagnosis history.)
+        </p>
+      </section>
+
+      <section class="card">
+        <h3>Diagnostic List</h3>
+        <table>
+          <thead><tr><th>Problem/Diagnosis</th><th>Description</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Hypertension</td><td>Consistently elevated blood pressure readings</td><td><span class="status warn">Under Observation</span></td></tr>
+            <tr><td>Type II Diabetes</td><td>Managed with diet and medication</td><td><span class="status">Cured</span></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <aside class="profile-col">
+      <div class="profile-card">
+        <div class="avatar-lg">JT</div>
+        <h2 style="margin:0 0 4px;">Jessica Taylor</h2>
+        <p style="opacity:0.85; font-size: 14px; margin: 0;">39 yrs, Female</p>
+
+        <div class="profile-detail"><small>DATE OF BIRTH</small>Aug 23, 1986</div>
+        <div class="profile-detail"><small>GENDER</small>Female</div>
+        <div class="profile-detail"><small>CONTACT INFO.</small>(415) 555-0132</div>
+        <div class="profile-detail"><small>EMERGENCY CONTACT</small>(415) 555-0199</div>
+        <div class="profile-detail" style="border-bottom:none;"><small>INSURANCE PROVIDER</small>MetroHealth PPO</div>
+
+        <button class="cta">Show All Information</button>
+      </div>
+
+      <section class="card">
+        <h3>Lab Results</h3>
+        <div class="lab-row">Blood Tests <span class="download">&#8595;</span></div>
+        <div class="lab-row">CT Scans <span class="download">&#8595;</span></div>
+        <div class="lab-row">Urine Tests <span class="download">&#8595;</span></div>
+      </section>
+    </aside>
+  </div>
+</body>
+</html>

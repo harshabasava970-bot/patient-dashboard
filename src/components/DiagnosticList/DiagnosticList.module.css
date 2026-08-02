@@ -1,0 +1,123 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-5);
+}
+
+.tableScroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-base);
+}
+
+.table th {
+  text-align: left;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  white-space: nowrap;
+}
+
+.table th:first-child {
+  border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+.table th:last-child {
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.table td {
+  padding: var(--space-4);
+  border-bottom: 1px solid var(--color-border-light);
+  vertical-align: top;
+  color: var(--color-text-primary);
+}
+
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table tbody tr {
+  transition: background var(--transition-fast);
+}
+
+.table tbody tr:hover td {
+  background: var(--color-bg);
+}
+
+.problemCell {
+  font-weight: 700;
+  white-space: nowrap;
+  min-width: 160px;
+}
+
+.descCell {
+  color: var(--color-text-secondary);
+  min-width: 200px;
+  line-height: 1.6;
+}
+
+/* ── Status badges ── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 16px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.statusGood {
+  background: var(--color-status-good-bg);
+  color: var(--color-status-good);
+}
+
+.statusWarn {
+  background: var(--color-status-warn-bg);
+  color: var(--color-status-warn);
+}
+
+.statusNeutral {
+  background: var(--color-status-neutral-bg);
+  color: var(--color-status-neutral);
+}
+
+.statusInfo {
+  background: var(--color-status-info-bg);
+  color: var(--color-status-info);
+}
+
+.empty {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  padding: var(--space-6) 0;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-4);
+  }
+}

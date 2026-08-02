@@ -1,0 +1,197 @@
+.card {
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-card);
+  transition: box-shadow var(--transition-base);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+}
+
+.range {
+  white-space: nowrap;
+}
+
+.rangeBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  padding: 4px;
+  border-radius: var(--radius-xs);
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.rangeBtn:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-lighter);
+}
+
+/* ── Body: chart + stats side by side ── */
+.body {
+  display: flex;
+  gap: var(--space-6);
+  align-items: flex-start;
+}
+
+.chartWrap {
+  flex: 1;
+  min-width: 0;
+}
+
+.chartArea {
+  height: 270px;
+  position: relative;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 270px;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+}
+
+/* ── Stats panel ── */
+.statsPanel {
+  flex-shrink: 0;
+  width: 144px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.statBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.statLegend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dotSystolic {
+  background: #e66fd2;
+}
+
+.dotDiastolic {
+  background: #8c6fe6;
+}
+
+.statLabel {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.statValue {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+/* ── Trend badge ── */
+.trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: var(--radius-pill);
+}
+
+.trendHigh {
+  background: var(--color-status-warn-bg);
+  color: var(--color-status-warn);
+}
+
+.trendLow {
+  background: var(--color-primary-lighter);
+  color: var(--color-primary);
+}
+
+.trendNormal {
+  background: var(--color-status-good-bg);
+  color: var(--color-status-good);
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .body {
+    flex-direction: column;
+  }
+
+  .statsPanel {
+    width: 100%;
+    flex-direction: row;
+    gap: var(--space-6);
+  }
+
+  .statBlock {
+    flex: 1;
+  }
+
+  .divider {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: var(--space-4);
+  }
+
+  .chartArea {
+    height: 220px;
+  }
+
+  .statsPanel {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+}
