@@ -75,3 +75,142 @@
   font-size: var(--font-size-base);
   padding: var(--space-4) 0;
 }
+
+/* ── Row button (whole row is clickable) ── */
+.rowBtn {
+  flex: 1;
+  min-width: 0;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--font-family-base);
+}
+
+/* ── Report modal content ── */
+.reportBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.reportMeta {
+  display: flex;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-5);
+  background: var(--color-primary-lighter);
+  border-radius: var(--radius-lg);
+  flex-wrap: wrap;
+}
+
+.reportMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.reportMetaLabel {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.reportMetaValue {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.reportTableWrap {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+}
+
+.reportTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.reportTable th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.reportTable td {
+  padding: var(--space-3) var(--space-4);
+  border-top: 1px solid var(--color-border-light);
+  color: var(--color-text-primary);
+  vertical-align: middle;
+}
+
+.reportTable tr:hover td {
+  background: var(--color-bg);
+}
+
+.reportTestName {
+  font-weight: 600;
+  min-width: 180px;
+}
+
+.reportValue {
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.reportRange {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-xs);
+}
+
+.reportBadge {
+  display: inline-flex;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.statusNormal { background: var(--color-status-good-bg);    color: var(--color-status-good); }
+.statusBad    { background: var(--color-status-warn-bg);    color: var(--color-status-warn); }
+.statusReview { background: var(--color-status-info-bg);    color: var(--color-status-info); }
+
+.reportNotes {
+  background: var(--color-bg);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-4) var(--space-5);
+}
+
+.reportNotesLabel {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-2);
+}
+
+.reportNotesText {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.reportEmpty {
+  padding: var(--space-6);
+  text-align: center;
+  color: var(--color-text-secondary);
+}
